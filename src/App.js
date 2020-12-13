@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import "./styles.css";
 
 export default function App() {
@@ -6,6 +6,7 @@ export default function App() {
   const passwordInputEl = useRef(null);
   const formEl = useRef(null);
   useEffect(() => {
+    const element = formEl.current;
     function onFormSubmit(event) {
       let prevent = false;
       if (!loginInputEl.current.value) {
@@ -18,8 +19,8 @@ export default function App() {
       }
       prevent && event.preventDefault();
     }
-    formEl.current.addEventListener("submit", onFormSubmit, false);
-    return () => formEl.current.removeEventListener("submit", onFormSubmit);
+    element.addEventListener("submit", onFormSubmit, false);
+    return () => element.removeEventListener("submit", onFormSubmit);
   }, []);
   return (
     <div className="App">
